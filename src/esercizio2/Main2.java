@@ -31,15 +31,13 @@ public class Main2 {
 		MyThread2 t2 = new MyThread2(secondaLista);
 		MyThread2 t3 = new MyThread2(terzaLista);
 
-		t1.start();
-		t2.start();
-		t3.start();
-
 		try {
+			t1.start();
+			t2.start();
+			t3.start();
 			t1.join();
 			t2.join();
 			t3.join();
-
 		} catch (InterruptedException e) {
 			Main2.logger.error(e.getMessage());
 		}
