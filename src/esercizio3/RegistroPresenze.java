@@ -14,7 +14,6 @@ public class RegistroPresenze {
 	private static File file = new File("info.txt");
 
 	public static void aggiungiPresenze(String name, int nPresenze) {
-
 		try {
 			registroPresenze.put(name, nPresenze);
 			FileUtils.writeStringToFile(file, name + "@" + nPresenze + "#" + System.lineSeparator(), "UTF-8", true);
@@ -22,7 +21,16 @@ public class RegistroPresenze {
 			Main3.logger.info(e.getMessage());
 		}
 		System.out.println("Hai aggiunto le presenze di " + name);
+	}
 
+	public String leggiFile() throws IOException {
+		if (file.exists()) {
+			String content = FileUtils.readFileToString(file, "UTF-8");
+			return content;
+		} else {
+			System.out.println("FILE NON TROVATO!");
+			return "";
+		}
 	}
 
 	public String getName() {
@@ -48,5 +56,4 @@ public class RegistroPresenze {
 	public static void setRegistroPresenze(Map<String, Integer> registroPresenze) {
 		RegistroPresenze.registroPresenze = registroPresenze;
 	}
-
 }
